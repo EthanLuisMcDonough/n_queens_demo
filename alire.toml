@@ -1,0 +1,16 @@
+name = "n_queens_demo"
+description = "N queens demo"
+version = "0.1.0-dev"
+
+authors = ["Ethan McDonough"]
+maintainers = ["Ethan McDonough <ethanluismcdonough@gmail.com>"]
+maintainers-logins = ["EthanLuisMcDonough"]
+licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
+website = ""
+tags = []
+
+executables = ["n_queens_demo"]
+
+[[depends-on]]
+lwt = "^1.2.0"
+gtkada = "^26.0.0"
