@@ -71,6 +71,7 @@ package body UI is
       On_Clicked (Run_Btn, Click_Run_Event'Access);
 
       Gtk_New_Vbox (Main_Body);
+      Set_Spacing (Main_Body, 10);
 
       declare
          CI : Chunk := Chunk'First;
@@ -84,7 +85,7 @@ package body UI is
                   Board : Chess_Board renames Boards (CI);
                begin
                   Gtk_New_Vbox (Cell);
-                  Set_Spacing (Main_Body, 10);
+                  Set_Spacing (Cell, 5);
                   
                   Board := Create_Board;
                   Cell.Add (Board.Table);
