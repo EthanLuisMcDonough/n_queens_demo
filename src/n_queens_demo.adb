@@ -1,7 +1,6 @@
+with UI;
+
 procedure N_Queens_Demo is
 begin
-   parallel
-   for I in 1 .. 10 loop
-      null;
-   end loop;
+   UI.Run;
 end N_Queens_Demo;
