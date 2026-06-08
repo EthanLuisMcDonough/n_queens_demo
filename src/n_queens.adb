@@ -2,7 +2,9 @@
 
 package body N_Queens is
    protected body Null_Observer is
-      procedure Display_Partial_Solution (Partial_Solution : Solution; CI : Chunk) is
+      procedure Display_Partial_Solution
+        (Partial_Solution : Solution; CI : Chunk)
+      is
       begin
          null;
       end Display_Partial_Solution;    
@@ -19,9 +21,9 @@ package body N_Queens is
       Observer : in out NQ_Observer'Class)
       return Solutions
    is
-      Computed : Solution_Stack.Stack;
+      Computed   : Solution_Stack.Stack;
       Task_Stack : Work_List.Stack;
-      SS : Solution_State := (others => <>);
+      SS         : Solution_State := (others => <>);
    begin
       Task_Stack.Push (SS);
 

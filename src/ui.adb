@@ -1,6 +1,6 @@
 with Glib;       use Glib;
-with Gtk.Main;	  use Gtk.Main;
-with Gtk.Box;	  use Gtk.Box;
+with Gtk.Main;   use Gtk.Main;
+with Gtk.Box;    use Gtk.Box;
 with Gtk.Enums;  use Gtk.Enums;
 with Gdk.RGBA;   use Gdk.RGBA;
 with LWT.OpenMP; use LWT.OpenMP;
@@ -110,7 +110,7 @@ package body UI is
    end Populate_Window;
 
    procedure Run is
-      Window     : Gtk_Window;
+      Window : Gtk_Window;
    begin
 	   Init;
       Gtk_New (Window);

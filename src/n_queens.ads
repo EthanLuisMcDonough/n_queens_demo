@@ -1,14 +1,11 @@
 --  Adapted from https://github.com/parasail-lang/parasail/blob/main/examples/n_queens.psl
 
 with Prot_Stack;
-with Ada.Calendar; use Ada.Calendar;
 
 generic
    Max_N : Integer;
    Chunk_Count : Positive := 1;
-
 package N_Queens is 
-
    type Chunk is new Positive range 1 .. Chunk_Count;
 
    type Chess_Unit is new Integer range Max_N * (-2) .. Max_N * 2;
@@ -30,7 +27,8 @@ package N_Queens is
       is abstract;
 
    protected type Null_Observer is new NQ_Observer with
-      procedure Display_Partial_Solution (Partial_Solution : Solution; CI : Chunk);
+      procedure Display_Partial_Solution
+        (Partial_Solution : Solution; CI : Chunk);
    end Null_Observer;
 
    function Place_Queens
@@ -41,7 +39,6 @@ package N_Queens is
    function Create_Null_Observer return NQ_Observer'Class;
 
 private
-
    subtype Sum_Range  is Chess_Unit range 2 .. Chess_Unit'Last;
    subtype Diff_Range is Chess_Unit range ONE - MAX .. MAX - ONE;
 
@@ -74,5 +71,4 @@ private
    --  placed.
 
    package Work_List is new Prot_Stack (Element => Solution_State);
-
 end N_Queens;
