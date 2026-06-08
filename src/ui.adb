@@ -4,8 +4,7 @@ with Gtk.Box;	  use Gtk.Box;
 with Gtk.Enums;  use Gtk.Enums;
 with Gdk.RGBA;   use Gdk.RGBA;
 with LWT.OpenMP; use LWT.OpenMP;
-
-with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Containers.Doubly_Linked_Lists;
 
 package body UI is
    Control : OMP_Parallel (Num_Threads => Chunk_Count);
@@ -137,16 +136,17 @@ package body UI is
    end Queens_Complete;
 
    task body UI_Observer is
+      use Solution_Queue;
       Solution_Val : Natural := 0;
       Has_Solution : Boolean := False;
-      Queues       : array (Chunk) of Solution_Queue.Queue;
+      Queues       : array (Chunk) of List;
    begin
       loop
          select
             accept Display_Partial_Solution
               (Partial_Solution : Solution; CI : Chunk)
             do
-               Queues (CI).Push (Partial_Solution);
+               Queues (CI).Prepend (Partial_Solution);
             end Display_Partial_Solution;
          or
             accept Set_Solution (Value : Natural) do
@@ -164,7 +164,8 @@ package body UI is
                      S : Solution := (others => 0);
                   begin
                      if not Queues (CI).Is_Empty then
-                        Queues (CI).Pop (S);
+                        S := Queues (CI).Last_Element;
+                        Queues (CI).Delete_Last;
                         All_Empty := False;
                      end if;
                      Res := Board_Idle.Idle_Add

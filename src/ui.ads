@@ -4,7 +4,7 @@ with Glib.Main;  use Glib.Main;
 with Gtk.Window; use Gtk.Window;
 with Gtk.Button; use Gtk.Button;
 with N_Queens;
-with Prot_Queue;
+with Ada.Containers.Doubly_Linked_Lists;
 
 package UI is
    Size        : constant Positive := 8;
@@ -37,7 +37,9 @@ private
 
    package Board_Idle is new Glib.Main.Generic_Sources (Board_Data);
    package Completed_Idle is new Glib.Main.Generic_Sources (Natural);
-   package Solution_Queue is new Prot_Queue (Element => Solution);
+   package Solution_Queue is new
+     Ada.Containers.Doubly_Linked_Lists
+       (Element_Type => Solution);
 
    task UI_Observer is new NQ_Observer with
       entry Display_Partial_Solution (Partial_Solution : Solution; CI : Chunk);
