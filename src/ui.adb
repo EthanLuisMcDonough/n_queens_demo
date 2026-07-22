@@ -11,7 +11,7 @@ package body UI is
    pragma Unreferenced (Control);
 
    SQUARE_SIZE   : constant Gint   := 25;
-   QUEEN_MARKUP  : constant String := "<span size=""14pt""><tt>♛</tt></span>";
+   QUEEN_MARKUP  : constant String := "<span size=""14pt"" foreground=""black""><tt>♛</tt></span>";
 
    function Create_Board return Chess_Board is
       BLACK : constant Gdk_RGBA := (0.78, 0.43, 0.45, 1.0);
